@@ -1,0 +1,32 @@
+{
+  "name": "gulp-typedoc",
+  "version": "0.0.1",
+  "description": "Gulp plugin for the TypeDoc typescript documentation tool.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rogierschouten/gulp-typedoc.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "typedoc",
+    "typescript",
+    "gulpplugin"
+  ],
+  "author": {
+    "name": "Rogier Schouten",
+    "email": "r.schouten@spiritit.com"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "event-stream": "^3.1.5",
+    "gulp-util": "^2.2.14",
+    "typedoc": "0.0.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.6.2",
+    "gulp-clean": "^0.3.0"
+  }
+}
