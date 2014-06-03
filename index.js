@@ -15,7 +15,13 @@ function typedoc(options) {
 	var child;
 
 	options = options || {};
-	args = options.args || [];
+	var args = [];
+	for (var key in options) {
+		if (options.hasOwnProperty(key)) {
+			args.push("--" + key);
+			args.push(options[key]);
+		}
+	}
 
 	return es.through(function(file) {
 		// keep pushing filenames on stack until we have all
@@ -30,7 +36,7 @@ function typedoc(options) {
 			args.push(files[i]);
 		}
 
-		var executable = path.join(__dirname, "node_modules", ".bin", "tsd" + winExt);
+		var executable = path.join(__dirname, "node_modules", ".bin", "typedoc" + winExt);
 		
 		child = child_process.spawn(path.resolve(executable), args, {
 			stdio: "inherit",

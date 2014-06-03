@@ -20,7 +20,12 @@ gulp.task("clean", function() {
 gulp.task("typedoc", ["clean"], function() {
 	return gulp
 		.src(["data/*.ts"])
-		.pipe(typedoc({args: ["--module", "commonjs", "--out", "./out", "--name", "gulp-typedoc-test", "--target", "es5"]}))
+		.pipe(typedoc({ 
+			module: "commonjs", 
+			out: "./out", 
+			name: "gulp-typedoc-test", 
+			target: "es5"
+		}))
 		.on("error", trapError) // make exit code non-zero
 	;
 });

@@ -1,6 +1,6 @@
 {
   "name": "gulp-typedoc",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Gulp plugin for the TypeDoc typescript documentation tool.",
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
   "dependencies": {
     "event-stream": "^3.1.5",
     "gulp-util": "^2.2.14",
-    "typedoc": "0.0.2"
+    "typedoc": "0.0.3"
   },
   "devDependencies": {
     "gulp": "^3.6.2",
