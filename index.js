@@ -3,11 +3,8 @@
 
 var child_process = require("child_process");
 var es = require("event-stream");
-var gutil = require("gulp-util");
 var path = require("path");
 
-var PluginError = gutil.PluginError;
-var PLUGIN_NAME = "spirit-gulp-typedoc";
 var winExt = /^win/.test(process.platform)?".cmd":"";
 
 function typedoc(options) {
