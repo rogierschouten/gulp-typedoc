@@ -21,9 +21,9 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "event-stream": "^3.1.5",
-    "gulp-util": "^2.2.14",
-    "typedoc": "^0.0.4"
+    "event-stream": "~3.1.5",
+    "gulp-util": "~2.2.14",
+    "typedoc": ">=0.0.4"
   },
   "devDependencies": {
     "gulp": "^3.6.2",
