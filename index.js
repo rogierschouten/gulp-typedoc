@@ -33,8 +33,10 @@ function typedoc(options) {
 			args.push(files[i]);
 		}
 
-		var executable = path.join(__dirname, "node_modules", ".bin", "typedoc" + winExt);
-		
+		var typedocPath = require.resolve("typedoc");
+		// Typedoc puts a script in the ./bin of the node_modules it is located.
+		// We need to go back three levels (since /typedoc/bin/typedoc is the entry point) and go to .bin
+		var executable = path.normalize(path.join(typedocPath, "..", "..", "..", ".bin", "typedoc" + winExt))
 		child = child_process.spawn(path.resolve(executable), args, {
 			stdio: "inherit",
 			env: process.env
