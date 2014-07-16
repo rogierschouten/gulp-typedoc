@@ -34,9 +34,18 @@ gulp.task("typedoc", function() {
 
 ```
 
+## Changelog
+
+### 1.0.3
+Use require.resolve() to find typedoc more reliably
+
+### 1.0.2
+Allow any typedoc version >= 0.0.4
+
 ## Contributors
 
-Rogier Schouten <rogier.schouten@gmail.com>
+* Rogier Schouten <rogier.schouten@gmail.com>
+* Daan Wissing <d.wissing@spiritit.com>
 
 ## License
 
