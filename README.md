@@ -36,6 +36,9 @@ gulp.task("typedoc", function() {
 
 ## Changelog
 
+### 1.0.5
+Moved to typedoc version >=0.1.1
+
 ### 1.0.3
 Use require.resolve() to find typedoc more reliably
 
