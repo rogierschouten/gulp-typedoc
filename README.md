@@ -27,7 +27,6 @@ The plugin takes an object, of which all properties are passed transparently to 
 ## Code Example
 
 ```javascript
-
 var typedoc = require("gulp-typedoc");
 
 gulp.task("typedoc", function() {
@@ -41,7 +40,19 @@ gulp.task("typedoc", function() {
 		}))
 	;
 });
+```
 
+## Troubleshooting
+
+If you have very many files, you will run into a "command line too long" error, especially on Windows. This is because each filename gets put on the command line of a single typedoc command.
+In that case, it's easier to write a task that puts a directory into typedoc instead of separate files:
+
+```javascript
+var child_process = require("child_process");
+
+gulp.task("typedoc", function(cb) {
+	child_process.exec("typedoc --out ./doc --module commonjs --target es5 --name MyProject ./my_code_directory/", cb);
+});
 ```
 
 ## Changelog
