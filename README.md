@@ -59,7 +59,8 @@ gulp.task("typedoc", function(cb) {
 ## Changelog
 
 ### 1.1.0
-Allow specifying boolean arguments for typedoc
+Allow specifying boolean arguments for typedoc;
+Replace module "gulp-clean" by "del"
 
 ### 1.0.6
 Moved to typedoc version 0.2.x

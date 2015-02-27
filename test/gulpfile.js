@@ -1,20 +1,15 @@
 // (c) Rogier Schouten <rogier.schouten@gmail.com>
 // License: Apache-2.0
 
-var clean = require("gulp-clean");
+var del = require("del");
 var gulp = require("gulp");
 var typedoc = require("../index");
 
 
 gulp.task("default", ["typedoc"]);
 
-gulp.task("clean", function() {  
-	return gulp
-		.src([
-			"out/"
-		])
-		.pipe(clean({force: true}))
-	;
+gulp.task("clean", function(cb) {  
+	del(["out/"], cb);
 }); 
 
 gulp.task("typedoc", ["clean"], function() {
