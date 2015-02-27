@@ -36,7 +36,8 @@ gulp.task("typedoc", function() {
 			module: "commonjs", 
 			out: "./out", 
 			name: "my-project", 
-			target: "es5"
+			target: "es5",
+			includeDeclarations: true
 		}))
 	;
 });
@@ -56,6 +57,9 @@ gulp.task("typedoc", function(cb) {
 ```
 
 ## Changelog
+
+### 1.1.0
+Allow specifying boolean arguments for typedoc
 
 ### 1.0.6
 Moved to typedoc version 0.2.x

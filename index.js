@@ -15,8 +15,12 @@ function typedoc(options) {
 	var args = [];
 	for (var key in options) {
 		if (options.hasOwnProperty(key)) {
-			args.push("--" + key);
-			args.push(options[key]);
+			if (options[key] !== false) {
+				args.push("--" + key);
+				if (options[key] !== true) {
+					args.push(options[key]);
+				}
+			}
 		}
 	}
 

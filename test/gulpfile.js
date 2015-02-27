@@ -24,7 +24,8 @@ gulp.task("typedoc", ["clean"], function() {
 			module: "commonjs", 
 			out: "./out", 
 			name: "gulp-typedoc-test", 
-			target: "es5"
+			target: "es5",
+			includeDeclarations: true
 		}))
 		.on("error", trapError) // make exit code non-zero
 	;
