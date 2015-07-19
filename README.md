@@ -11,18 +11,17 @@
 Gulp plugin to execute the TypeDoc tool by Sebastian Lenz (https://sebastian-lenz.github.io/typedoc)
 
 
-
 ## Installation
 
 You do not need to install typedoc separately, just install gulp-typedoc:
 
-```shell
+```
 npm install --save-dev gulp-typedoc
 ```
 
 ## Usage
 
-The plugin takes an object, of which all properties are passed transparently to the typedoc executable. Pipe in TypeScript files. The documentation files are not piped out, this is a future extension. 
+The plugin takes an object, of which all properties are passed transparently to typedoc. Pipe in TypeScript files. The documentation files are not piped out. 
 
 ## Code Example
 
@@ -33,30 +32,31 @@ gulp.task("typedoc", function() {
 	return gulp
 		.src(["data/*.ts"])
 		.pipe(typedoc({ 
+			// TypeScript options (see typescript docs)
 			module: "commonjs", 
-			out: "./out", 
-			name: "my-project", 
 			target: "es5",
-			includeDeclarations: true
+			includeDeclarations: true,
+			
+			// Output options (see typedoc docs)
+			out: "./out", 
+			json: "output/to/file.json",
+
+			// TypeDoc options (see typedoc docs)
+			name: "my-project", 
+			theme: "/path/to/my/theme",
+			plugins: ["my", "plugins"],
+			ignoreCompilerErrors: false,
+			version: true,
 		}))
 	;
 });
 ```
 
-## Troubleshooting
-
-If you have very many files, you will run into a "command line too long" error, especially on Windows. This is because each filename gets put on the command line of a single typedoc command.
-In that case, it's easier to write a task that puts a directory into typedoc instead of separate files:
-
-```javascript
-var child_process = require("child_process");
-
-gulp.task("typedoc", function(cb) {
-	child_process.exec("typedoc --out ./doc --module commonjs --target es5 --name MyProject ./my_code_directory/", cb);
-});
-```
-
 ## Changelog
+
+### 1.2.0
+Don't start a child process anymore.
+FIX: having many .ts files no longer causes "command line too long" error.
 
 ### 1.1.0
 Allow specifying boolean arguments for typedoc;

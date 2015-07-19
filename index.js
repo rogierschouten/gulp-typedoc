@@ -1,55 +1,71 @@
 // (c) Rogier Schouten <rogier.schouten@gmail.com>
-// License: Apache-2.0
+// License: ICS
 
-var child_process = require("child_process");
+"use strict";
+
 var es = require("event-stream");
-var path = require("path");
+var gutil = require("gulp-util");
+var PluginError = gutil.PluginError;
+var typedocModule = require("typedoc");
 
-var winExt = /^win/.test(process.platform)?".cmd":"";
+var PLUGIN_NAME = "gulp-typedoc";
 
 function typedoc(options) {
 	var files = [];
-	var child;
-
 	options = options || {};
-	var args = [];
-	for (var key in options) {
-		if (options.hasOwnProperty(key)) {
-			if (options[key] !== false) {
-				args.push("--" + key);
-				if (options[key] !== true) {
-					args.push(options[key]);
-				}
-			}
-		}
-	}
 
 	return es.through(function(file) {
-		// keep pushing filenames on stack until we have all
-		if (path.extname(file.path) == ".ts") {
-			files.push(file.path);
-		}
+		files.push(file.path);
 	}, function() {
 		// end of stream, start typedoc
 		var stream = this;
 
-		for (var i = 0; i < files.length; i++) {
-			args.push(files[i]);
-		}
+		if (files.length === 0) {
+			stream.emit("error", new PluginError(PLUGIN_NAME, "No input files for TypeDoc."));
+			stream.emit("end");
+			return;
+		} else if (!options.out && !options.json) {
+			stream.emit("error", new PluginError(PLUGIN_NAME, "You must either specify the 'out' or 'json' option."));
+			stream.emit("end");
+			return;
+		} else {
+			// leaving the 'out' or 'version' option in causes typedoc error for some reason
+			var out = options.out;
+			delete options.out; 
+			var version = options.version;
+			delete options.version;
 
-		var typedocPath = require.resolve("typedoc");
-		// Typedoc puts a script in the ./bin of the node_modules it is located.
-		// We need to go back three levels (since /typedoc/bin/typedoc is the entry point) and go to .bin
-		var executable = path.normalize(path.join(path.dirname(typedocPath), "..", "..", ".bin", "typedoc" + winExt))
-		child = child_process.spawn(path.resolve(executable), args, {
-			stdio: "inherit",
-			env: process.env
-		}).on("exit", function(code) {
-			if (child) {
-				child.kill();
+			// reduce console logging
+			options.logger = function(message, level, newline) {
+				if (level === 3) {
+					gutil.log(gutil.colors.red(message));
+				}
+			}
+
+			// typedoc instance
+			var app = new typedocModule.Application(options);
+
+			if (version) {
+				gutil.log(app.toString());
+			}
+			var src = app.expandInputFiles(files);
+			var project = app.convert(src);
+			if (project) {
+				if (out) app.generateDocs(project, out);
+				if (options.json) app.generateJson(project, options.json);
+				if (app.logger.hasErrors()) {
+					stream.emit("error", new PluginError(PLUGIN_NAME, "There were errors generating TypeDoc output, see above."));
+					stream.emit("end");
+					return;
+				}
+			} else {
+				stream.emit("error", new PluginError(PLUGIN_NAME, "Failed to generate load TypeDoc project."));
+				stream.emit("end");
+				return;
 			}
 			stream.emit("end");
-		});
+			return;
+		}
 	});
 };
 

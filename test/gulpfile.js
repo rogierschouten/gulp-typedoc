@@ -3,8 +3,7 @@
 
 var del = require("del");
 var gulp = require("gulp");
-var typedoc = require("../index");
-
+var gulpTypedoc = require("../index");
 
 gulp.task("default", ["typedoc"]);
 
@@ -15,7 +14,8 @@ gulp.task("clean", function(cb) {
 gulp.task("typedoc", ["clean"], function() {
 	return gulp
 		.src(["data/*.ts"])
-		.pipe(typedoc({ 
+		.pipe(gulpTypedoc({ 
+			version: true,
 			module: "commonjs", 
 			out: "./out", 
 			name: "gulp-typedoc-test", 
