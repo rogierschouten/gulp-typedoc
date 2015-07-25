@@ -32,6 +32,8 @@ function typedoc(options) {
 			// leaving the 'out' or 'version' option in causes typedoc error for some reason
 			var out = options.out;
 			delete options.out; 
+			var json = options.json;
+			delete options.json; 
 			var version = options.version;
 			delete options.version;
 
@@ -52,7 +54,7 @@ function typedoc(options) {
 			var project = app.convert(src);
 			if (project) {
 				if (out) app.generateDocs(project, out);
-				if (options.json) app.generateJson(project, options.json);
+				if (json) app.generateJson(project, json);
 				if (app.logger.hasErrors()) {
 					stream.emit("error", new PluginError(PLUGIN_NAME, "There were errors generating TypeDoc output, see above."));
 					stream.emit("end");

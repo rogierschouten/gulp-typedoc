@@ -18,6 +18,7 @@ gulp.task("typedoc", ["clean"], function() {
 			version: true,
 			module: "commonjs", 
 			out: "./out", 
+			json: "./out/test.json", 
 			name: "gulp-typedoc-test", 
 			target: "es5",
 			includeDeclarations: true
