@@ -19,11 +19,11 @@
     "name": "Rogier Schouten",
     "email": "r.schouten@spiritit.com"
   },
-  "license": "ICS",
+  "license": "ISC",
   "dependencies": {
     "event-stream": "^3.3.1",
     "gulp-util": "^3.0.6",
-    "typedoc": "^0.3.6"
+    "typedoc": "^0.3.12"
   },
   "devDependencies": {
     "del": "^1.2.0",
