@@ -1,4 +1,4 @@
-// (c) Rogier Schouten <rogier.schouten@gmail.com>
+// Copyright (c) 2015 Rogier Schouten <rogier.schouten@gmail.com>
 // License: ICS
 
 "use strict";

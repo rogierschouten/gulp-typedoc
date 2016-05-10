@@ -1,25 +1,26 @@
 // (c) Rogier Schouten <rogier.schouten@gmail.com>
 // License: Apache-2.0
 
-var del = require("del");
 var gulp = require("gulp");
 var gulpTypedoc = require("../index");
+var path = require("path")
+var rimraf = require("rimraf");
 
 gulp.task("default", ["typedoc"]);
 
-gulp.task("clean", function(cb) {  
-	del(["out/"], cb);
-}); 
+gulp.task("clean", function(cb) {
+	rimraf(path.join(__dirname, "out"), cb);
+});
 
 gulp.task("typedoc", ["clean"], function() {
 	return gulp
 		.src(["data/*.ts"])
-		.pipe(gulpTypedoc({ 
+		.pipe(gulpTypedoc({
 			version: true,
-			module: "commonjs", 
-			out: "./out", 
-			json: "./out/test.json", 
-			name: "gulp-typedoc-test", 
+			module: "commonjs",
+			out: "./out",
+			json: "./out/test.json",
+			name: "gulp-typedoc-test",
 			target: "es5",
 			includeDeclarations: true
 		}))
@@ -39,15 +40,15 @@ process.on("exit", function() {
 // This is needed because Gulp always returns exit code 0
 // unless an exception is thrown which gives a useless stack trace.
 function trapError(e) {
-	if (e.plugin && e.message) { 
+	if (e.plugin && e.message) {
 		// it is a gulp plugin error
 		console.log("Error in plugin: " + e.plugin);
 		console.log(e.message);
 	}
 	else {
 		// some other error
-		gutil.log(e); 
-	}	
+		gutil.log(e);
+	}
 	exitCode++;
 }
 
