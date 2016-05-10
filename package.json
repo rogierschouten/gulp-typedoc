@@ -22,11 +22,13 @@
   "license": "ISC",
   "dependencies": {
     "event-stream": "^3.3.1",
-    "gulp-util": "^3.0.6",
-    "typedoc": "^0.3.12"
+    "gulp-util": "^3.0.6"
   },
   "devDependencies": {
     "del": "^1.2.0",
     "gulp": "^3.9.0"
+  },
+  "peerDependencies": {
+    "typedoc": ">= 0.3.9 || 1.8.10"
   }
 }
