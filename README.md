@@ -9,8 +9,7 @@
 
 
 Gulp plugin to execute the TypeDoc tool by Sebastian Lenz
-http://typedoc.io/
-https://github.com/TypeStrong/typedoc
+http://typedoc.org
 https://github.com/TypeStrong/typedoc
 
 ## Installation
