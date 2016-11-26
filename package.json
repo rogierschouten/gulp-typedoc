@@ -17,7 +17,8 @@
   ],
   "author": {
     "name": "Rogier Schouten",
-    "email": "r.schouten@spiritit.com"
+	"url": "https://github.com/rogierschouten/",
+    "email": "github@workingcode.ninja"
   },
   "license": "ISC",
   "dependencies": {
