@@ -50,23 +50,29 @@ function typedoc(options) {
 			if (version) {
 				gutil.log(app.toString());
 			}
-			var src = app.expandInputFiles(files);
-			var project = app.convert(src);
-			if (project) {
-				if (out) app.generateDocs(project, out);
-				if (json) app.generateJson(project, json);
-				if (app.logger.hasErrors()) {
-					stream.emit("error", new PluginError(PLUGIN_NAME, "There were errors generating TypeDoc output, see above."));
+			try {
+				var src = app.expandInputFiles(files);
+				var project = app.convert(src);
+				if (project) {
+					if (out) app.generateDocs(project, out);
+					if (json) app.generateJson(project, json);
+					if (app.logger.hasErrors()) {
+						stream.emit("error", new PluginError(PLUGIN_NAME, "There were errors generating TypeDoc output, see above."));
+						stream.emit("end");
+						return;
+					}
+				} else {
+					stream.emit("error", new PluginError(PLUGIN_NAME, "Failed to generate load TypeDoc project."));
 					stream.emit("end");
 					return;
 				}
-			} else {
-				stream.emit("error", new PluginError(PLUGIN_NAME, "Failed to generate load TypeDoc project."));
+				stream.emit("end");
+				return;
+			} catch (e) {
+				stream.emit("error", e);
 				stream.emit("end");
 				return;
 			}
-			stream.emit("end");
-			return;
 		}
 	});
 };
