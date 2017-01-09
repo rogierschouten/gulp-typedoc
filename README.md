@@ -57,6 +57,10 @@ gulp.task("typedoc", function() {
 
 ## Changelog
 
+### 2.0.2
+
+* Catch any synchronous exceptions from typedoc
+
 ### 2.0.1
 
 * Update typedoc URL in README.md (thanks @pascalberger)
