@@ -22,12 +22,12 @@
   },
   "license": "ISC",
   "dependencies": {
-    "event-stream": "^3.3.2",
-    "gulp-util": "^3.0.7"
+    "event-stream": "^3.3.4",
+    "gulp-util": "^3.0.8"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "rimraf": "^2.5.2"
+    "rimraf": "^2.5.4"
   },
   "peerDependencies": {
     "typedoc": ">=0.3.9"
