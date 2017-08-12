@@ -57,6 +57,10 @@ gulp.task("typedoc", function() {
 
 ## Changelog
 
+### 2.0.3
+
+* Don't error when there are no files
+
 ### 2.0.2
 
 * Catch any synchronous exceptions from typedoc

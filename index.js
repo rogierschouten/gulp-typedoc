@@ -21,7 +21,6 @@ function typedoc(options) {
 		var stream = this;
 
 		if (files.length === 0) {
-			stream.emit("error", new PluginError(PLUGIN_NAME, "No input files for TypeDoc."));
 			stream.emit("end");
 			return;
 		} else if (!options.out && !options.json) {
@@ -31,9 +30,9 @@ function typedoc(options) {
 		} else {
 			// leaving the 'out' or 'version' option in causes typedoc error for some reason
 			var out = options.out;
-			delete options.out; 
+			delete options.out;
 			var json = options.json;
-			delete options.json; 
+			delete options.json;
 			var version = options.version;
 			delete options.version;
 

@@ -1,6 +1,6 @@
 {
   "name": "gulp-typedoc",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Gulp plugin for the TypeDoc typescript documentation tool.",
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
   ],
   "author": {
     "name": "Rogier Schouten",
-	"url": "https://github.com/rogierschouten/",
+    "url": "https://github.com/rogierschouten/",
     "email": "github@workingcode.ninja"
   },
   "license": "ISC",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "rimraf": "^2.5.4"
+    "rimraf": "^2.6.1"
   },
   "peerDependencies": {
     "typedoc": ">=0.3.9"
