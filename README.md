@@ -2,9 +2,6 @@
 
 [![NPM version](https://badge.fury.io/js/gulp-typedoc.svg)](http://badge.fury.io/js/gulp-typedoc)
 
-[![NPM](https://nodei.co/npm/gulp-typedoc.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gulp-typedoc/)
-[![NPM](https://nodei.co/npm-dl/gulp-typedoc.png?months=9&height=3)](https://nodei.co/npm/gulp-typedoc/)
-
 ## Synopsis
 
 
