@@ -57,7 +57,7 @@ function typedoc(options) {
 				if (project) {
 					if (out) app.generateDocs(project, out);
 					if (json) app.generateJson(project, json);
-					if (app.logger.hasOwnProperty("hasErrors") && app.logger.hasErrors()) {
+					if (app.logger.hasErrors()) {
 						stream.emit("error", new PluginError(PLUGIN_NAME, "There were errors generating TypeDoc output, see above."));
 						stream.emit("end");
 						return;
