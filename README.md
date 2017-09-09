@@ -20,6 +20,8 @@ The reason for installing typedoc separately is that it allows you to choose the
 
 The plugin takes an object, of which all properties are passed transparently to typedoc. Pipe in TypeScript files. The documentation files are not piped out.
 
+By default, the plugin will output log messages from TypeDoc. Specify `logger: 'none'` to suppress TypeDoc logging altogether.
+
 ## Code Example
 
 ```javascript
@@ -50,6 +52,10 @@ gulp.task("typedoc", function() {
 ```
 
 ## Changelog
+
+### 2.1.0
+
+* Add support for `logger` option.
 
 ### 2.0.3
 
