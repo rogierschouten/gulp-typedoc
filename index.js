@@ -36,17 +36,19 @@ function typedoc(options) {
 			var version = options.version;
 			delete options.version;
 
-			// reduce console logging
-			options.logger = function(message, level, newline) {
-				if (level === 3) {
-					gutil.log(gutil.colors.red(message));
+			if (!options.logger) {
+				// reduce console logging
+				options.logger = function(message, level, newline) {
+					if (level === 3) {
+						gutil.log(gutil.colors.red(message));
+					}
 				}
 			}
 
 			// typedoc instance
 			var app = new typedocModule.Application(options);
 
-			if (version) {
+			if (version && options.logger !== "none") {
 				gutil.log(app.toString());
 			}
 			try {
