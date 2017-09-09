@@ -1,24 +1,24 @@
-// Copyright (c) 2015 Rogier Schouten <rogier.schouten@gmail.com>
-// License: ICS
+// Copyright (c) 2015 Rogier Schouten <github@workingcode.ninja>
+// License: ISC
 
 "use strict";
 
-var es = require("event-stream");
-var gutil = require("gulp-util");
-var PluginError = gutil.PluginError;
-var typedocModule = require("typedoc");
+const es = require("event-stream");
+const gutil = require("gulp-util");
+const PluginError = gutil.PluginError;
+const typedocModule = require("typedoc");
 
-var PLUGIN_NAME = "gulp-typedoc";
+const PLUGIN_NAME = "gulp-typedoc";
 
 function typedoc(options) {
-	var files = [];
+	const files = [];
 	options = options || {};
 
 	return es.through(function(file) {
 		files.push(file.path);
 	}, function() {
 		// end of stream, start typedoc
-		var stream = this;
+		const stream = this;
 
 		if (files.length === 0) {
 			stream.emit("end");
@@ -29,11 +29,11 @@ function typedoc(options) {
 			return;
 		} else {
 			// leaving the 'out' or 'version' option in causes typedoc error for some reason
-			var out = options.out;
+			const out = options.out;
 			delete options.out;
-			var json = options.json;
+			const json = options.json;
 			delete options.json;
-			var version = options.version;
+			const version = options.version;
 			delete options.version;
 
 			if (!options.logger) {
@@ -42,18 +42,18 @@ function typedoc(options) {
 					if (level === 3) {
 						gutil.log(gutil.colors.red(message));
 					}
-				}
+				};
 			}
 
 			// typedoc instance
-			var app = new typedocModule.Application(options);
+			const app = new typedocModule.Application(options);
 
 			if (version && options.logger !== "none") {
 				gutil.log(app.toString());
 			}
 			try {
-				var src = app.expandInputFiles(files);
-				var project = app.convert(src);
+				const src = app.expandInputFiles(files);
+				const project = app.convert(src);
 				if (project) {
 					if (out) app.generateDocs(project, out);
 					if (json) app.generateJson(project, json);
@@ -76,7 +76,7 @@ function typedoc(options) {
 			}
 		}
 	});
-};
+}
 
 module.exports = typedoc;
 

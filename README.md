@@ -1,9 +1,6 @@
 # Gulp-TypeDoc
 
-[![NPM version](https://badge.fury.io/js/gulp-typedoc.svg)](http://badge.fury.io/js/gulp-typedoc)
-
 ## Synopsis
-
 
 Gulp plugin to execute the TypeDoc tool by Sebastian Lenz
 http://typedoc.org
@@ -105,6 +102,7 @@ gulp.task("typedoc", function() {
 * Daan Wissing
 * Mizunashi Mana
 * Pascal Berger
+* Pedro Batista
 
 ## License
 
