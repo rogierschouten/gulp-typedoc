@@ -53,6 +53,10 @@ gulp.task("typedoc", function() {
 
 ## Changelog
 
+### 2.1.1
+
+* Don't depend on typedoc in package.json dependencies (bugfix by @MattiasBuelens)
+
 ### 2.1.0
 
 * Add support for `logger` option.
@@ -109,6 +113,7 @@ gulp.task("typedoc", function() {
 * Mizunashi Mana
 * Pascal Berger
 * Pedro Batista
+* Matthias Beulens
 
 ## License
 
