@@ -3,9 +3,10 @@
 
 "use strict";
 
+const colors = require("ansi-colors");
 const es = require("event-stream");
-const gutil = require("gulp-util");
-const PluginError = gutil.PluginError;
+const log = require("fancy-log");
+const PluginError = require("plugin-error");
 const typedocModule = require("typedoc");
 
 const PLUGIN_NAME = "gulp-typedoc";
@@ -40,7 +41,7 @@ function typedoc(options) {
 				// reduce console logging
 				options.logger = function(message, level, newline) {
 					if (level === 3) {
-						gutil.log(gutil.colors.red(message));
+						log(colors.red(message));
 					}
 				};
 			}
@@ -49,7 +50,7 @@ function typedoc(options) {
 			const app = new typedocModule.Application(options);
 
 			if (version && options.logger !== "none") {
-				gutil.log(app.toString());
+				log(app.toString());
 			}
 			try {
 				const src = app.expandInputFiles(files);
