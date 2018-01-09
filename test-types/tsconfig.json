@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "baseUrl": ".",
+    "locale": "en-us",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "newLine": "lf",
+    "noEmit": true,
+    "paths": {
+      "gulp-typedoc": [
+        "../index.d.ts"
+      ]
+    },
+    "rootDir": ".",
+    "strict": true,
+    "target": "es2017"
+  },
+  "files": [
+    "./test.ts"
+  ],
+  "exclude": []
+}
