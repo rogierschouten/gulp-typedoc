@@ -6,9 +6,10 @@
     "type": "git",
     "url": "https://github.com/rogierschouten/gulp-typedoc.git"
   },
+  "types": "index.d.ts",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/test.js"
+    "test": "mocha test/test.js && tsc -p test-types"
   },
   "keywords": [
     "typedoc",
@@ -28,12 +29,14 @@
     "plugin-error": "^0.1.2"
   },
   "devDependencies": {
+    "@types/node": "^9.3.0",
     "chai": "^4.1.2",
     "fs-extra": "^4.0.1",
     "gulp": "^3.9.1",
     "mocha": "^3.5.0",
     "rimraf": "^2.6.1",
-    "typedoc": "^0.8.0"
+    "typedoc": "^0.8.0",
+    "typescript": "^2.6.2"
   },
   "peerDependencies": {
     "typedoc": ">=0.3.9"
