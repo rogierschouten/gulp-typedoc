@@ -6,6 +6,7 @@
     "type": "git",
     "url": "https://github.com/rogierschouten/gulp-typedoc.git"
   },
+  "types": "index.d.ts",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/test.js && tsc -p test-types"
