@@ -53,6 +53,11 @@ gulp.task("typedoc", function() {
 
 ## Changelog
 
+### 2.2.0
+
+* Fixed security issue in dependency
+* Add TypeScript type definitions
+
 ### 2.1.2
 
 * Removed deprecated gulp-util dependency
@@ -118,6 +123,7 @@ gulp.task("typedoc", function() {
 * Pascal Berger
 * Pedro Batista
 * Matthias Beulens
+* Charles Samborski
 
 ## License
 
