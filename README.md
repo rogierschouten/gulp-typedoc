@@ -53,6 +53,10 @@ gulp.task("typedoc", function() {
 
 ## Changelog
 
+### 2.2.2
+
+* Fix security vulnerabilities in dependencies
+
 ### 2.2.1
 
 * Fix event-stream dependency to 3.3.4 because 3.3.5-3.3.6 have issues.

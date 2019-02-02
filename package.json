@@ -1,6 +1,6 @@
 {
   "name": "gulp-typedoc",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Gulp plugin for the TypeDoc typescript documentation tool.",
   "repository": {
     "type": "git",
@@ -32,8 +32,8 @@
     "@types/node": "^9.3.0",
     "chai": "^4.1.2",
     "fs-extra": "^4.0.1",
-    "gulp": "^3.9.1",
-    "mocha": "^3.5.0",
+    "gulp": "^4.0.0",
+    "mocha": "^5.2.0",
     "rimraf": "^2.6.1",
     "typedoc": "^0.8.0",
     "typescript": "^2.6.2"
