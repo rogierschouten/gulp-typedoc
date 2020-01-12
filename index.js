@@ -48,6 +48,11 @@ function typedoc(options) {
 
 			// typedoc instance
 			const app = new typedocModule.Application(options);
+			if (parseFloat(typedocModule.Application.VERSION) >= 0.16) {
+				app.options.addReader(new typedocModule.TSConfigReader());
+				app.options.addReader(new typedocModule.TypeDocReader());
+				app.bootstrap(options);
+			}
 
 			if (version && options.logger !== "none") {
 				log(app.toString());
