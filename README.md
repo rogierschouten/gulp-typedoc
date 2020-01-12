@@ -53,6 +53,10 @@ gulp.task("typedoc", function() {
 
 ## Changelog
 
+### 2.2.4
+
+* Support typedoc 0.16.1+
+
 ### 2.2.3
 
 * Fix security vulnerabilities in dependencies
@@ -136,6 +140,7 @@ gulp.task("typedoc", function() {
 * Pedro Batista
 * Matthias Beulens
 * Charles Samborski
+* Gerrit Birkeland
 
 ## License
 

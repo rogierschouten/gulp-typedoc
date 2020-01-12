@@ -1,6 +1,6 @@
 {
   "name": "gulp-typedoc",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "Gulp plugin for the TypeDoc typescript documentation tool.",
   "repository": {
     "type": "git",
