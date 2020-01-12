@@ -109,7 +109,9 @@ describe("gulp-typedoc", function() {
 			json: "./out/test.json",
 			name: "gulp-typedoc-test",
 			target: "es5",
-			includeDeclarations: true
+			includeDeclarations: true,
+			excludeExternals: true,
+			ignoreCompilerErrors: true
 		});
 		await fse.writeFile(path.join(TEST_DIR, "gulpfile.js"), g);
 		await run();
@@ -125,7 +127,9 @@ describe("gulp-typedoc", function() {
 			json: "./out/test.json",
 			name: "gulp-typedoc-test",
 			target: "es5",
-			includeDeclarations: true
+			includeDeclarations: true,
+			excludeExternals: true,
+			ignoreCompilerErrors: true
 		});
 		await fse.writeFile(path.join(TEST_DIR, "gulpfile.js"), g);
 		const {stdout, stderr} = await run();
@@ -141,7 +145,9 @@ describe("gulp-typedoc", function() {
 			name: "gulp-typedoc-test",
 			target: "es5",
 			logger: "none",
-			includeDeclarations: true
+			includeDeclarations: true,
+			excludeExternals: true,
+			ignoreCompilerErrors: true
 		});
 		await fse.writeFile(path.join(TEST_DIR, "gulpfile.js"), g);
 		const {stdout, stderr} = await run();
