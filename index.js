@@ -8,6 +8,7 @@ const es = require("event-stream");
 const log = require("fancy-log");
 const PluginError = require("plugin-error");
 const typedocModule = require("typedoc");
+const semver = require("semver");
 
 const PLUGIN_NAME = "gulp-typedoc";
 
@@ -48,7 +49,7 @@ function typedoc(options) {
 
 			// typedoc instance
 			const app = new typedocModule.Application(options);
-			if (parseFloat(typedocModule.Application.VERSION) >= 0.16) {
+			if (semver.gte(typedocModule.Application.VERSION, '0.16.1')) {
 				app.options.addReader(new typedocModule.TSConfigReader());
 				app.options.addReader(new typedocModule.TypeDocReader());
 				app.bootstrap(options);
