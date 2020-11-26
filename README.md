@@ -53,6 +53,10 @@ gulp.task("typedoc", function() {
 
 ## Changelog
 
+### 2.2.6
+
+* Upgrade dependencies to fix security vulnerabilities
+
 ### 2.2.5
 
 * Upgrade dependencies to fix security vulnerabilities
