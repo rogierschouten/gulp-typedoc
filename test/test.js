@@ -31,11 +31,11 @@ function run() {
 		let stdout = "";
 		let stderr = "";
 		child.stdout.on("data", (data) => {
-			// console.log(data.toString());
+			console.log(data.toString());
 			stdout += data;
 		});
 		child.stderr.on("data", (data) => {
-			// console.error(data.toString());
+			console.error(data.toString());
 			stderr += data;
 		});
 		child.on("exit", (code) => {
@@ -51,12 +51,12 @@ function run() {
 function gulpfile(typedocOpts) {
 	return `
 const gulp = require("gulp");
-const gulpTypeDoc = require("${path.relative(TEST_DIR, path.join(__dirname, "..", "index.js")).replace(/\\/g, "/")}");
+const gulpTypeDoc = require("${path.posix.relative(TEST_DIR, path.join(__dirname, "..", "index.js"))}");
 
 // Workaround: directly calling process.exit() has corner cases where
 // the console.log statements are not flushed (namely if stdout is piped
 // instead of goes to a terminal).
-const exitCode = 0;
+let exitCode = 0;
 process.on("exit", function() {
 if (exitCode != 0) process.exit(exitCode);
 });
@@ -72,7 +72,7 @@ if (e.plugin && e.message) {
 }
 else {
 	// some other error
-	gutil.log(e);
+	console.log(e);
 }
 exitCode++;
 }
@@ -104,53 +104,40 @@ describe("gulp-typedoc", function() {
 	it("should create a .html file", async () => {
 		const g = gulpfile({
 			version: true,
-			module: "commonjs",
-			out: "./out",
-			json: "./out/test.json",
+			out: "./out/html",
+			json: "./test.json",
 			name: "gulp-typedoc-test",
-			target: "es5",
-			includeDeclarations: true,
 			excludeExternals: true,
-			ignoreCompilerErrors: true
 		});
 		await fse.writeFile(path.join(TEST_DIR, "gulpfile.js"), g);
 		await run();
-		const exists = await fse.exists(path.join(TEST_DIR, "out", "index.html"));
-		expect(exists).to.equal(true);
+		await fse.access(path.join(TEST_DIR, "out", "html", "index.html"), fse.constants.R_OK);
 	});
 
 	it("should enable typedoc logging when nothing specified", async () => {
 		const g = gulpfile({
 			version: true,
-			module: "commonjs",
-			out: "./out",
-			json: "./out/test.json",
+			out: "./out/html",
+			json: "./test.json",
 			name: "gulp-typedoc-test",
-			target: "es5",
-			includeDeclarations: true,
 			excludeExternals: true,
-			ignoreCompilerErrors: true
 		});
 		await fse.writeFile(path.join(TEST_DIR, "gulpfile.js"), g);
-		const {stdout, stderr} = await run();
+		const {stdout} = await run();
 		expect(stdout).to.contain("Using TypeScript");
 	});
 
 	it("should disable typedoc logging when logger 'none' specified", async () => {
 		const g = gulpfile({
 			version: true,
-			module: "commonjs",
-			out: "./out",
-			json: "./out/test.json",
+			out: "./out/html/",
+			json: "./test.json",
 			name: "gulp-typedoc-test",
-			target: "es5",
 			logger: "none",
-			includeDeclarations: true,
 			excludeExternals: true,
-			ignoreCompilerErrors: true
 		});
 		await fse.writeFile(path.join(TEST_DIR, "gulpfile.js"), g);
-		const {stdout, stderr} = await run();
+		const {stdout} = await run();
 		expect(stdout).to.not.contain("Using TypeScript");
 	});
 });

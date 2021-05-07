@@ -48,7 +48,8 @@ function typedoc(options) {
 			}
 
 			// typedoc instance
-			const app = new typedocModule.Application(options);
+			const app = new typedocModule.Application();
+			app.bootstrap(options);
 			if (semver.gte(typedocModule.Application.VERSION, '0.16.1')) {
 				app.options.addReader(new typedocModule.TSConfigReader());
 				app.options.addReader(new typedocModule.TypeDocReader());
@@ -62,8 +63,8 @@ function typedoc(options) {
 				const src = app.expandInputFiles(files);
 				const project = app.convert(src);
 				if (project) {
-					if (out) app.generateDocs(project, out);
-					if (json) app.generateJson(project, json);
+					if (out) app.generateDocs(project, out);  // TODO promisified!!
+					if (json) app.generateJson(project, json); // TODO promisified!!
 					if (app.logger.hasErrors()) {
 						stream.emit("error", new PluginError(PLUGIN_NAME, "There were errors generating TypeDoc output, see above."));
 						stream.emit("end");

@@ -31,20 +31,15 @@ gulp.task("typedoc", function() {
 	return gulp
 		.src(["data/*.ts"])
 		.pipe(typedoc({
-			// TypeScript options (see typescript docs)
-			module: "commonjs",
-			target: "es5",
-			includeDeclarations: true,
+			// Output options (see TypeDoc docs http://typedoc.org/api/interfaces/typedocoptionmap.html)
+			// NOTE: the out option and the json option cannot share the same directory
+			out: "./out/html/",
+			json: "/out/file.json",
 
-			// Output options (see typedoc docs)
-			out: "./out",
-			json: "output/to/file.json",
-
-			// TypeDoc options (see typedoc docs)
+			// TypeDoc options (see TypeDoc docs http://typedoc.org/api/interfaces/typedocoptionmap.html)
 			name: "my-project",
 			theme: "/path/to/my/theme",
-			plugins: ["my", "plugins"],
-			ignoreCompilerErrors: false,
+			plugin: ["my", "plugins"],
 			version: true,
 		}))
 	;
@@ -52,6 +47,12 @@ gulp.task("typedoc", function() {
 ```
 
 ## Changelog
+
+### 3.0.0
+
+* BREAKING: Requires Typedoc version `>=0.20.34` now (and supports it)
+* BREAKING: since the options follow the TypeDoc options, these are different now.
+* Upgrade dependencies to fix security vulnerabilities
 
 ### 2.2.9
 
