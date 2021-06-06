@@ -49,19 +49,18 @@ function typedoc(options) {
 
 			// typedoc instance
 			const app = new typedocModule.Application();
-			app.bootstrap(options);
 			if (semver.gte(typedocModule.Application.VERSION, '0.16.1')) {
 				app.options.addReader(new typedocModule.TSConfigReader());
 				app.options.addReader(new typedocModule.TypeDocReader());
-				app.bootstrap(options);
 			}
 
 			if (version && options.logger !== "none") {
 				log(app.toString());
 			}
 			try {
-				const src = app.expandInputFiles(files);
-				const project = app.convert(src);
+				// Specify the entry points to be documented by TypeDoc.
+				app.bootstrap({ ...options, entryPoints: files });
+				const project = app.convert();
 				if (project) {
 					if (out) app.generateDocs(project, out);  // TODO promisified!!
 					if (json) app.generateJson(project, json); // TODO promisified!!
@@ -87,6 +86,3 @@ function typedoc(options) {
 }
 
 module.exports = typedoc;
-
-
-
