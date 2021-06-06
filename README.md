@@ -48,6 +48,10 @@ gulp.task("typedoc", function() {
 
 ## Changelog
 
+### 3.0.1
+
+* Fix #40 entrypoints not specified to TypeDoc by @robinprashanth
+
 ### 3.0.0
 
 * BREAKING: Requires Typedoc version `>=0.20.34` now (and supports it)
@@ -162,6 +166,7 @@ gulp.task("typedoc", function() {
 * Matthias Beulens
 * Charles Samborski
 * Gerrit Birkeland
+* @robinprashanth
 
 ## License
 
