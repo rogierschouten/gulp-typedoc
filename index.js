@@ -14,7 +14,7 @@ const PLUGIN_NAME = "gulp-typedoc";
 
 function typedoc(options) {
 	const files = [];
-	options = options || {};
+	const opts = options ? JSON.parse(JSON.stringify(options)) : {};
 
 	return es.through(function(file) {
 		files.push(file.path);
@@ -25,22 +25,18 @@ function typedoc(options) {
 		if (files.length === 0) {
 			stream.emit("end");
 			return;
-		} else if (!options.out && !options.json) {
+		} else if (!opts.out && !opts.json) {
 			stream.emit("error", new PluginError(PLUGIN_NAME, "You must either specify the 'out' or 'json' option."));
 			stream.emit("end");
 			return;
 		} else {
-			// leaving the 'out' or 'version' option in causes typedoc error for some reason
-			const out = options.out;
-			delete options.out;
-			const json = options.json;
-			delete options.json;
-			const version = options.version;
-			delete options.version;
+			const out = opts.out;
+			const json = opts.json;
+			const version = opts.version;
 
-			if (!options.logger) {
+			if (!opts.logger) {
 				// reduce console logging
-				options.logger = function(message, level, newline) {
+				opts.logger = function(message, level, newline) {
 					if (level === 3) {
 						log(colors.red(message));
 					}
@@ -54,12 +50,12 @@ function typedoc(options) {
 				app.options.addReader(new typedocModule.TypeDocReader());
 			}
 
-			if (version && options.logger !== "none") {
+			if (version && opts.logger !== "none") {
 				log(app.toString());
 			}
 			try {
 				// Specify the entry points to be documented by TypeDoc.
-				app.bootstrap({ ...options, entryPoints: files });
+				app.bootstrap({ ...opts, entryPoints: files });
 				const project = app.convert();
 				if (project) {
 					if (out) app.generateDocs(project, out);  // TODO promisified!!
