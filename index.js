@@ -14,7 +14,7 @@ const PLUGIN_NAME = "gulp-typedoc";
 
 function typedoc(options) {
 	const files = [];
-	const opts = options ? JSON.parse(JSON.stringify(options)) : {};
+	const opts = { ...options };
 
 	return es.through(function(file) {
 		files.push(file.path);
