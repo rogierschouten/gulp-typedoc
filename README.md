@@ -48,6 +48,10 @@ gulp.task("typedoc", function() {
 
 ## Changelog
 
+### 3.0.2
+
+* Fix #44 Work with clean copy of user options. Thanks @tristan00b!
+
 ### 3.0.1
 
 * Fix #40 entrypoints not specified to TypeDoc by @robinprashanth
