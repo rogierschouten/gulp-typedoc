@@ -38,7 +38,7 @@
     "chai": "^4.3.4",
     "fs-extra": "^9.1.0",
     "gulp": "^4.0.2",
-    "mocha": "^8.3.2",
+    "mocha": "^10.2.0",
     "rimraf": "^3.0.2",
     "typedoc": "*",
     "typescript": "^4.2.3"
